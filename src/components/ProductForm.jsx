@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import 'bootstrap/dist/css/bootstrap.css';
+import { Button, Container, TextField, Typography, Box } from "@mui/material";
 
+const submitButtonStyle = {
+  backgroundColor: "#888888", // Grey color
+  marginRight: "8px", // Horizontal spacing between buttons
+};
+
+const cancelButtonStyle = {
+  backgroundColor: "rgba(255, 255, 255, 0.9)", // Off-white color
+  color: "#333", // Dark text color
+};
 
 class ProductForm extends Component {
   state = {
     name: "",
     description: "",
     category: "",
-    quantity: 0,
-    price: 0,
+    quantity: "",
+    price: "",
   };
 
   handleChange = (e) => {
@@ -29,76 +38,85 @@ class ProductForm extends Component {
       name: "",
       description: "",
       category: "",
-      quantity: 0,
-      price: 0,
+      quantity: "",
+      price: "",
     });
   };
 
   render() {
     return (
-      <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
-        <div className="col-md-6">
-          <form onSubmit={this.handleSubmit}>
-            <h2>New Product</h2>
-            <div className="form-group">
-              <label>Name:</label>
-              <input
-                type="text"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Description:</label>
-              <input
-                type="text"
-                name="description"
-                value={this.state.description}
-                onChange={this.handleChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Category:</label>
-              <input
-                type="text"
-                name="category"
-                value={this.state.category}
-                onChange={this.handleChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Quantity:</label>
-              <input
-                type="number"
-                name="quantity"
-                value={this.state.quantity}
-                onChange={this.handleChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Price:</label>
-              <input
-                type="number"
-                name="price"
-                value={this.state.price}
-                onChange={this.handleChange}
-                className="form-control"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
+      <Container maxWidth="sm">
+        <form onSubmit={this.handleSubmit}>
+          <Typography variant="h4" gutterBottom>
+            New Product
+          </Typography>
+          <TextField
+            id="standard-basic"
+            label="Name"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            id="standard-basic"
+            label="Description"
+            name="description"
+            value={this.state.description}
+            onChange={this.handleChange}
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            id="standard-basic"
+            label="Category"
+            name="category"
+            value={this.state.category}
+            onChange={this.handleChange}
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            id="standard-basic"
+            label="Quantity"
+            name="quantity"
+            type="number"
+            value={this.state.quantity}
+            onChange={this.handleChange}
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            id="standard-basic"
+            label="Price"
+            name="price"
+            type="number"
+            value={this.state.price}
+            onChange={this.handleChange}
+            fullWidth
+            variant="standard"
+          />
+          <Box mt={2}> {/* Spacing between buttons */}
+            <Button
+              type="submit"
+              variant="contained"
+              style={submitButtonStyle}
+              color="primary"
+            >
               Submit
-            </button>
-            <button type="button" onClick={this.handleCancel} className="btn btn-secondary">
+            </Button>
+            <Button
+              onClick={this.handleCancel}
+              variant="contained"
+              style={cancelButtonStyle}
+              color="secondary"
+            >
               Cancel
-            </button>
-          </form>
-        </div>
-      </div>
+            </Button>
+          </Box>
+        </form>
+      </Container>
     );
   }
 }
